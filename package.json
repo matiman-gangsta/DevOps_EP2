@@ -1,0 +1,26 @@
+{
+  "name": "devops-repo",
+  "version": "1.0.0",
+  "description": "**Asignatura:** Ingeniería DevOps (DOY0101)\r **Institución:** Duoc UC\r **Estudiante:** Matias Nazal",
+  "main": "app.js",
+  "scripts": {
+	"start": "node app.js",
+	"dev": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matiman-gangsta/DevOps-Repo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matiman-gangsta/DevOps-Repo/issues"
+  },
+  "homepage": "https://github.com/matiman-gangsta/DevOps-Repo#readme"
+}
