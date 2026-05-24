@@ -1,0 +1,34 @@
+name: DevOps EP2
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build-and-test:
+    name: Validar Microservicio y Contenedor
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Descargar el código del repositorio
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    # 2. Configurar el entorno de Node.js (necesario para más adelante)
+    - name: Instalación de Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-node-version: '20'
+        cache: 'npm'
+
+    # 3. Instalar las dependencias del proyecto
+    - name: Instalación de dependencias
+      run: npm install
+
+    # 4. PASO CRÍTICO (IE1): Construir la imagen Docker
+    - name: Construcción de Imagen Docker
+      run: |
+        docker build -t student-base-microservice:${{ github.sha }} .
+        echo "Imagen Docker construida con éxito para el commit ${{ github.sha }}"
