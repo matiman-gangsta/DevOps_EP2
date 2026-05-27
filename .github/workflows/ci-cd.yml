@@ -31,7 +31,15 @@ jobs:
     - name: Ejecución de Pruebas Unitarias
       run: npm test
 
-    # 5. Construir la imagen Docker
+    # 5. Análisis de vulnerabilidades en dependencias y código con Snyk
+    - name: Escaneo de Seguridad (DevSecOps)
+      uses: snyk/actions/node@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --severity-threshold=high # Esto bloqueará el pipeline si encuentra fallos de seguridad graves o críticos
+        
+    # 6. Construir la imagen Docker
     - name: Construcción de Imagen Docker
       run: |
         docker build -t student-base-microservice:${{ github.sha }} .
