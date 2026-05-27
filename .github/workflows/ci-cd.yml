@@ -16,7 +16,7 @@ jobs:
     - name: Checkout del código
       uses: actions/checkout@v4
 
-    # 2. Configurar el entorno de Node.js (necesario para más adelante)
+    # 2. Configurar el entorno de Node.js
     - name: Instalación de Node.js
       uses: actions/setup-node@v4
       with:
@@ -27,7 +27,11 @@ jobs:
     - name: Instalación de dependencias
       run: npm install
 
-    # 4. PASO CRÍTICO (IE1): Construir la imagen Docker
+    # 4. Ejecutar pruebas unitarias automatizadas
+    - name: Ejecución de Pruebas Unitarias
+      run: npm test
+
+    # 5. Construir la imagen Docker
     - name: Construcción de Imagen Docker
       run: |
         docker build -t student-base-microservice:${{ github.sha }} .

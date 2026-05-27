@@ -26,3 +26,9 @@ app.get('/health', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en puerto ${PORT}`);
 });
+
+const server = app.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
+});
+
+module.exports = { app, server };
