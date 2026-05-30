@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: student_base_container
+    container_name: EP2_container
     # Mapeo de puertos: Puerto_Host:Puerto_Contenedor
     ports:
       - "8080:8080"
