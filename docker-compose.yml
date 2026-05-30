@@ -2,11 +2,11 @@ version: '3.8'
 
 services:
   # Nombre del servicio del microservicio
-  student-base-api:
+  EP2-api:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: student_base_container
+    container_name: EP2_container
     # Mapeo de puertos: Puerto_Host:Puerto_Contenedor
     ports:
       - "8080:8080"
