@@ -42,5 +42,5 @@ jobs:
     # 6. Construir la imagen Docker
     - name: Construcción de Imagen Docker
       run: |
-        docker build -t EP2-microservice:${{ github.sha }} .
+        docker build -t ep2-microservice:${{ github.sha }} .
         echo "Imagen Docker construida con éxito para el commit ${{ github.sha }}"
