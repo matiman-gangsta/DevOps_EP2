@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   # Nombre del servicio del microservicio
-  student-base-api:
+  EP2-api:
     build:
       context: .
       dockerfile: Dockerfile
