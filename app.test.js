@@ -5,7 +5,7 @@ afterAll(() => {
   server.close();
 });
 
-describe('Pruebas Unitarias del Microservicio - Student Base', () => {
+describe('Pruebas Unitarias del Microservicio', () => {
   
   it('Debería responder 200 OK en el endpoint de Health Check', async () => {
     const res = await request(app).get('/health');
