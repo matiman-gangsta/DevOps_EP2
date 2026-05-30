@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  # Nombre del servicio del microservicio
+  EP2-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: EP2_container
+    # Mapeo de puertos: Puerto_Host:Puerto_Contenedor
+    ports:
+      - "8080:8080"
+    # Variables de entorno simuladas para el entorno de desarrollo/testing
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+    restart: always

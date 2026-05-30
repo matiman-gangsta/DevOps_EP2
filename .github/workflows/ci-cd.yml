@@ -1,0 +1,46 @@
+name: DevOps EP2
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build-and-test:
+    name: Validar Microservicio y Contenedor
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Descargar el código del repositorio
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    # 2. Configurar el entorno de Node.js
+    - name: Instalación de Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-node-version: '20'
+        cache: 'npm'
+
+    # 3. Instalar las dependencias del proyecto
+    - name: Instalación de dependencias
+      run: npm install
+
+    # 4. Ejecutar pruebas unitarias automatizadas
+    - name: Ejecución de Pruebas Unitarias
+      run: npm test
+
+    # 5. Análisis de vulnerabilidades en dependencias y código con Snyk
+    - name: Escaneo de Seguridad (DevSecOps)
+      uses: snyk/actions/node@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --severity-threshold=high # Esto bloqueará el pipeline si encuentra fallos de seguridad graves o críticos
+        
+    # 6. Construir la imagen Docker
+    - name: Construcción de Imagen Docker
+      run: |
+        docker build -t ep2-microservice:${{ github.sha }} .
+        echo "Imagen Docker construida con éxito para el commit ${{ github.sha }}"
